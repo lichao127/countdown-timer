@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown Timer</h1>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label for="hours">Hours:</label>
+                <input type="number" id="hours" min="0" max="24" value="1" step="1">
+            </div>
+            
+            <div class="input-group">
+                <label for="warningThreshold">Warning Threshold (minutes):</label>
+                <input type="number" id="warningThreshold" min="1" max="60" value="5" step="1">
+            </div>
+            
+            <div class="input-group">
+                <label for="warningMessage">Warning Message:</label>
+                <input type="text" id="warningMessage" value="Time is running out!" maxlength="100">
+            </div>
+            
+            <button id="startBtn" class="btn">Start</button>
+            <button id="resetBtn" class="btn" disabled>Reset</button>
+        </div>
+        
+        <div class="timer-display">
+            <div id="timeRemaining">00:00:00</div>
+        </div>
+        
+        <div id="warningDisplay" class="warning-message">
+            <p id="warningText"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

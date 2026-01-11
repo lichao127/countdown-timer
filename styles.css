@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: background 0.5s ease;
+    padding: 20px;
+}
+
+body.warning {
+    background: #dc2626;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        background: #dc2626;
+    }
+    50% {
+        background: #b91c1c;
+    }
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+.container.running {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.container.running h1 {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.container.running .controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    width: auto;
+}
+
+.container.running .input-group,
+.container.running #startBtn {
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#startBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+#startBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+#resetBtn {
+    background: #6b7280;
+    color: white;
+}
+
+#resetBtn:hover:not(:disabled) {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.timer-display {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: all 0.5s ease;
+}
+
+.container.running .timer-display {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#timeRemaining {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+    transition: all 0.5s ease;
+}
+
+.container.running #timeRemaining {
+    font-size: 12rem;
+    color: #1f2937;
+}
+
+.warning-message {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.container.running .warning-message:not(.high-contrast) {
+    display: none;
+}
+
+.container.running .warning-message.high-contrast {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+}
+
+.warning-message p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: all 0.5s ease;
+}
+
+.warning-message.low-contrast p {
+    color: #d1d5db;
+}
+
+.warning-message.high-contrast {
+    background: #fef2f2;
+    border: 3px solid #dc2626;
+}
+
+.warning-message.high-contrast p {
+    color: #dc2626;
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.container.running .warning-message.high-contrast p {
+    font-size: 3rem;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #timeRemaining {
+        font-size: 2.5rem;
+    }
+    
+    .warning-message p {
+        font-size: 1.2rem;
+    }
+    
+    .container.running #timeRemaining {
+        font-size: 6rem;
+    }
+    
+    .container.running .warning-message.high-contrast p {
+        font-size: 1.8rem;
+    }
+}
