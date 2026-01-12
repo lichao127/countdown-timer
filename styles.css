@@ -96,6 +96,12 @@ h1 {
     font-size: 0.95rem;
 }
 
+.input-group-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+}
+
 .input-group input {
     padding: 12px;
     border: 2px solid #ddd;
@@ -178,6 +184,8 @@ h1 {
 .container.running #timeRemaining {
     font-size: 12rem;
     color: #1f2937;
+    max-height: 80vh;
+    overflow: hidden;
 }
 
 .warning-message {
