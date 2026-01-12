@@ -2,6 +2,8 @@ class CountdownTimer {
     constructor() {
         // DOM Elements
         this.hoursInput = document.getElementById('hours');
+        this.minutesInput = document.getElementById('minutes');
+        this.secondsInput = document.getElementById('seconds');
         this.warningThresholdInput = document.getElementById('warningThreshold');
         this.warningMessageInput = document.getElementById('warningMessage');
         this.startBtn = document.getElementById('startBtn');
@@ -34,12 +36,14 @@ class CountdownTimer {
         
         // Get values
         const hours = parseFloat(this.hoursInput.value) || 0;
+        const minutes = parseFloat(this.minutesInput.value) || 0;
+        const seconds = parseFloat(this.secondsInput.value) || 0;
         const warningMinutes = parseFloat(this.warningThresholdInput.value) || 0;
         this.warningMessage = this.warningMessageInput.value || 'Time is running out!';
         
         // Validate
-        if (hours <= 0) {
-            alert('Please enter a valid number of hours greater than 0');
+        if (hours <= 0 && minutes <= 0 && seconds <= 0) {
+            alert('Please enter a valid countdown time (hours, minutes, or seconds greater than 0)');
             return;
         }
         
@@ -49,7 +53,7 @@ class CountdownTimer {
         }
         
         // Calculate seconds
-        this.totalSeconds = hours * 3600;
+        this.totalSeconds = hours * 3600 + minutes * 60 + seconds;
         this.remainingSeconds = this.totalSeconds;
         this.warningThresholdSeconds = warningMinutes * 60;
         
@@ -153,6 +157,8 @@ class CountdownTimer {
     
     disableInputs(disabled) {
         this.hoursInput.disabled = disabled;
+        this.minutesInput.disabled = disabled;
+        this.secondsInput.disabled = disabled;
         this.warningThresholdInput.disabled = disabled;
         this.warningMessageInput.disabled = disabled;
     }
